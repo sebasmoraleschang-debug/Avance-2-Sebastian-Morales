@@ -13,6 +13,7 @@ public class LoginFrame extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
+        // Panel Central
         JPanel panelCentro = new JPanel(new GridLayout(6, 1, 5, 5));
         panelCentro.setBorder(BorderFactory.createEmptyBorder(20, 40, 20, 40));
 
@@ -38,6 +39,7 @@ public class LoginFrame extends JFrame {
         panelCentro.add(lblMensaje);
         panelCentro.add(btnIngresar);
 
+        // Panel Inferior
         JPanel panelSur = new JPanel(new GridLayout(2, 1));
         JButton btnRegistro = new JButton("¿Aún no tiene cuenta? Regístrese aquí");
         btnRegistro.setContentAreaFilled(false);
@@ -52,6 +54,14 @@ public class LoginFrame extends JFrame {
         add(panelCentro, BorderLayout.CENTER);
         add(panelSur, BorderLayout.SOUTH);
 
+        // --- Eventos de navegación ---
+        
+        // Abrir ventana de Registro
+        btnRegistro.addActionListener(e -> {
+            new RegistroFrame().setVisible(true);
+        });
+
+        // Validar credenciales y abrir el Catálogo
         btnIngresar.addActionListener(e -> {
             String usuario = txtUsuario.getText();
             String clave = new String(txtContrasena.getPassword());
@@ -59,7 +69,8 @@ public class LoginFrame extends JFrame {
             if (usuario.isEmpty() || clave.isEmpty()) {
                 lblMensaje.setText("Credenciales incorrectas. Intente de nuevo.");
             } else if (usuario.equals("smorales") && clave.equals("123456")) {
-                JOptionPane.showMessageDialog(null, "Bienvenido a Fidness");
+                new CatalogoFrame().setVisible(true); // Abre el catálogo
+                dispose(); // Cierra esta ventana de login
             } else {
                 lblMensaje.setText("Credenciales incorrectas. Intente de nuevo.");
             }
