@@ -2,7 +2,7 @@ public class DetalleRutina {
     private int orden;
     private int series;
     private int repeticiones;
-    private Ejercicio ejercicio;
+    Ejercicio ejercicio;
 
     public DetalleRutina(int orden, int series, int repeticiones, Ejercicio ejercicio) {
         this.orden = orden;
